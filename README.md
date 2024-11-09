@@ -25,7 +25,7 @@
 
 <h2 id="features" style="color: #4A90E2;">✨ Features</h2>
 <ul style="list-style-type: square;">
-  <li>Flask application public within the local network as GUI.</li>
+  <li>Flask application public within the local network as a GUI.</li>
   <li>Connection to a relational Oracle database.</li>
   <li>Fully functional Convolutional Neural Network trained on 5200+ radiography images from Kaggle.</li>
 </ul>
@@ -81,7 +81,7 @@ pip install numpy, tensorflow, keras, opencv-python, flask, kagglehub, cx_Oracle
 
 <h2 id="usage" style="color: #4A90E2;">🚀 Usage</h2>
 <p>To start using the project:</p>
-<p>Add a valid configuration to config.py.</p>
+<p>Add a valid configuration to config.py (sqldeveloper database).</p>
 <p>Then run:</p>
 
 <p>Python method (no GUI):</p>
