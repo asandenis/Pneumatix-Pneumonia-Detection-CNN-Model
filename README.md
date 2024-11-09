@@ -25,7 +25,7 @@
 
 <h2 id="features" style="color: #4A90E2;">✨ Features</h2>
 <ul style="list-style-type: square;">
-  <li>Flask application public within the local application as a GUI.</li>
+  <li>Flask application public within the local network as GUI.</li>
   <li>Connection to a relational Oracle database.</li>
   <li>Fully functional Convolutional Neural Network trained on 5200+ radiography images from Kaggle.</li>
 </ul>
