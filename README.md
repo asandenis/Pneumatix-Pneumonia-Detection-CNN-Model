@@ -80,7 +80,9 @@ pip install numpy, tensorflow, keras, opencv-python, flask, kagglehub, cx_Oracle
 </pre>
 
 <h2 id="usage" style="color: #4A90E2;">🚀 Usage</h2>
-<p>To start using the project, run:</p>
+<p>To start using the project:</p>
+<p>Add a valid configuration to config.py.</p>
+<p>Then run:</p>
 
 <p>Python method (no GUI):</p>
 <p>Edit img_path inside main.py with the path of the desired image.</p>
