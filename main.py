@@ -6,7 +6,7 @@ import cv2
 
 model = load_model('pneumonia_cnn_model.h5')
 
-img_path = 'test/NORMAL-9092354-0001.jpeg'
+img_path = 'test/IMAGE'
 img = image.load_img(img_path, target_size=(128, 128))
 img_array = image.img_to_array(img)
 img_array = cv2.cvtColor(img_array.astype('uint8'), cv2.COLOR_RGB2GRAY)
