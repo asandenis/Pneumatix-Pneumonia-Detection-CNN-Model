@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pneumatix</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='media/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='media/logo.png') }}" alt="Pneumatix Logo" class="logo">
+    </header>
+
+    <div class="container">
+        <div class="drag-drop-area">
+            <p>Drag and drop your radiography image here</p>
+            <input type="file" id="fileInput" style="display: none;">
+            <label for="fileInput" class="drag-drop-label">Select file or drag here</label>
+            <img id="previewImage" style="display: none; max-width: 200px; margin-top: 10px; margin-left: 20px;" alt="Image Preview">
+            <p id="fileName" style="display: none; margin-top: 5px; font-size: 12px;"></p>
+        </div>
+
+        <p id="prediction-text"></p>
+
+        <button id="predictButton" class="predict-button">Predict Pneumonia</button>
+    </div>
+
+    <script>
+        const dragArea = document.querySelector('.drag-drop-area');
+        const fileInput = document.querySelector('#fileInput');
+        const previewImage = document.querySelector('#previewImage');
+        const fileNameDisplay = document.querySelector('#fileName');
+
+        function displayImagePreview(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                previewImage.style.display = 'block';
+                fileNameDisplay.textContent = file.name;
+                fileNameDisplay.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        dragArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            dragArea.classList.add('dragging');
+        });
+
+        dragArea.addEventListener('dragleave', () => {
+            dragArea.classList.remove('dragging');
+        });
+
+        dragArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            dragArea.classList.remove('dragging');
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                fileInput.files = e.dataTransfer.files;
+                displayImagePreview(file);
+            }
+        });
+
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
+            if (file && file.type.startsWith('image/')) {
+                displayImagePreview(file);
+            }
+        });
+
+        document.querySelector('#predictButton').addEventListener('click', () => {
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please upload a radiography image.');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.prediction !== undefined) {
+                    const probability = data.prediction * 100;
+                    const predictionText = probability >= 50
+                        ? `Prediction: Pneumonia (probability: ${probability.toFixed(2)}%)`
+                        : `Prediction: Normal (probability: ${(100 - probability).toFixed(2)}%)`;
+
+                    document.getElementById('prediction-text').textContent = predictionText;
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                alert('Error: ' + error.message);
+            });
+        });
+    </script>
+</body>
+</html>
