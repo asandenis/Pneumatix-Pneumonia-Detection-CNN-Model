@@ -3,7 +3,7 @@
 <h3 style="color: #555;">Pneumonia Detection CNN Machine Learning Model.</h3>
 
 <p align="center">
-  <img src="https://i.imgur.com/HNTzXgQ.png" width="500" alt="Pneumatix Logo">
+  <img src="https://i.imgur.com/HNTzXgQ.png" width="300" alt="Pneumatix Logo">
 </p>
 
 <p align="center">
