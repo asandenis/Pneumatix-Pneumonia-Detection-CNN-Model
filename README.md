@@ -48,7 +48,7 @@
     <img src="https://cdn.iconscout.com/icon/free/png-256/free-html-5-1-1175208.png?f=webp&w=256" width="24" alt="HTML Icon" />
     HTML
   </li>
-   <li>
+  <li>
     <img src="https://img.icons8.com/color/48/000000/css3.png" width="24" alt="CSS Icon" />
     CSS
   </li>
